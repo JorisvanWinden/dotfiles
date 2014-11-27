@@ -27,37 +27,45 @@ read -r index ; do
 	done
 }
 
+# set volume to 100%
 function vol-max() {
 	vol 100%
 }
 
+# set volume to anything
 function vol() {
 	pactl set-sink-volume @DEFAULT_SINK@ $1
 }
 
+# list pulse sink-inputs
 function list-inputs() {
 	pacmd list-sink-inputs | grep -e index: -e driver: -e sink:
 }
 
+# list pulse source-outputs
 function list-outputs() {
 	pacmd list-source-outputs | grep -e index: -e driver: -e source:
 }
 
+# turn on rtp broadcasting
 function rtp-on() {
 	echo "Loading rtp module"
 	pactl load-module module-rtp-send source=rtp.monitor port=47002 > /dev/null
 }
 
+# turn off rtp broadcasting
 function rtp-off() {
 	echo "Unloading rtp module"
 	pactl unload-module module-rtp-send
 }
 
+# restart pulse
 function pa-restart() {
 	pulseaudio --kill
 	pulseaudio --start
 }
 
+# set brighness level from 1 to 10
 function brightness() {
 	sudo -k tee /sys/class/backlight/acpi_video0/brightness <<< $1
 }
