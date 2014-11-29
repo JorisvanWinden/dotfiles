@@ -64,8 +64,3 @@ function pa-restart() {
 	pulseaudio --kill
 	pulseaudio --start
 }
-
-# set brighness level from 1 to 10
-function brightness() {
-	sudo -k tee /sys/class/backlight/acpi_video0/brightness <<< $1
-}
