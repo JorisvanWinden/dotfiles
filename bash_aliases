@@ -5,8 +5,8 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # some more ls aliases
-alias ll='ls -lF'
-alias la='ls -A'
+alias ll='ls -l'
+alias la='ls -Al'
 alias l='ls -CF'
 
 # common lisp alias
