@@ -1,13 +1,13 @@
-# enable ls and grep colors
+# enable ls, less and grep colors
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias less='less -R'
 
 # some more ls aliases
 alias ll='ls -l'
 alias la='ls -Al'
-alias l='ls -CF'
 
 # common lisp alias
 alias cl=clisp
