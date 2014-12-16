@@ -1,3 +1,19 @@
+set nocompatible               " be iMproved
+
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/Vundle
+
+call vundle#begin()
+
+Plugin 'gmarik/Vundle'
+
+Plugin 'raymond-w-ko/vim-lua-indent'
+
+Plugin 'scrooloose/nerdtree'
+
+call vundle#end()
+
 " enable syntax highlighting
 syntax on
 
@@ -32,7 +48,7 @@ set tabstop=3
 set shiftwidth=3
 
 " don't expand tabs into spaces
-set noexpandtab
+set expandtab
 set autoindent
 set smartindent
 
