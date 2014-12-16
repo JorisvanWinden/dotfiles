@@ -84,6 +84,7 @@ for s = 1, screen.count() do
 end
 
 mymenuitems = {
+   { "suspend", function() os.execute("systemctl suspend") end },
    { "quit", awesome.quit },
    { "restart", awesome.restart },
    { "reboot", function() os.execute("shutdown -r now")  end },
@@ -237,7 +238,7 @@ globalkeys = awful.util.table.join(
          if client.focus then client.focus:raise() end
       end),
 
-                                    -- Layout manipulation
+   -- Layout manipulation
    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
@@ -255,6 +256,7 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
    awful.key({ modkey, "Control" }, "r", awesome.restart),
    awful.key({ modkey, "Control" }, "q", awesome.quit),
+   awful.key({ modkey, "Control" }, "s",     function () os.execute("systemctl suspend") end),
 
    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
