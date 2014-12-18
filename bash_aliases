@@ -7,7 +7,7 @@ alias less='less -R'
 
 # some more ls aliases
 alias ll='ls -l'
-alias la='ls -Al'
+alias la='ls -A'
 
 # common lisp alias
 alias cl=clisp
