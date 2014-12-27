@@ -11,7 +11,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local vicious = require("vicious")
-local APW = require("apw/widget")
 
 
 -- Error handling
@@ -102,14 +101,12 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a textclock widget and a memory stat box widget
 mytextclock = awful.widget.textclock()
 mystatbox = wibox.widget.textbox()
-mybatbox = wibox.widget.textbox()
 
 myseperator = wibox.widget.textbox()
 
 myseperator:set_text("  ")
 
 vicious.register(mystatbox, vicious.widgets.mem, "CPU: $1% RAM: ($2MB/$3MB)", 15)
-vicious.register(mybatbox, vicious.widgets.bat, "$2% remaining", 180, "BAT0")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -199,9 +196,6 @@ for s = 1, screen.count() do
 
    right_layout:add(mystatbox)
    right_layout:add(myseperator)
-   right_layout:add(mybatbox)
-   right_layout:add(myseperator)
-   right_layout:add(APW)
    right_layout:add(mytextclock)
    right_layout:add(mylayoutbox[s])
 
@@ -281,10 +275,7 @@ globalkeys = awful.util.table.join(
          end),
    -- Menubar
    awful.key({ modkey }, "p", function() menubar.show() end),
-   awful.key({ modkey }, "w", function() awful.util.spawn("google-chrome-stable") end),
-   awful.key({}, "XF86AudioRaiseVolume", APW.Up),
-   awful.key({}, "XF86AudioLowerVolume", APW.Down),
-   awful.key({}, "XF86AudioMute", APW.ToggleMute)
+   awful.key({ modkey }, "w", function() awful.util.spawn("google-chrome-stable") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -448,10 +439,6 @@ client.connect_signal("manage", function (c, startup)
    end
 end)
 
-APWTimer = timer({ timeout = 0.5 })
-APWTimer:connect_signal("timeout", APW.Update)
-APWTimer:start()
-
 --client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 --client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
@@ -459,3 +446,4 @@ APWTimer:start()
 awful.util.spawn_with_shell("xfsettingsd")
 awful.util.spawn_with_shell("synapse --startup")
 awful.util.spawn_with_shell("pulseaudio --start")
+awful.util.spawn_with_shell("xfce4-power-manager")

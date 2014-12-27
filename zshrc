@@ -24,4 +24,4 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # set umask
-umask 033
+umask 022
