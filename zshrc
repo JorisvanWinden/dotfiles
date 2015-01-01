@@ -19,8 +19,8 @@ export EDITOR=vim
 export PATH=$PATH:~/bin
 
 # source bash aliases
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+if [ -f ~/.aliases ]; then
+	. ~/.aliases
 fi
 
 # set umask

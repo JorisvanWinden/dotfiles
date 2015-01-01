@@ -251,6 +251,7 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Control" }, "r", awesome.restart),
    awful.key({ modkey, "Control" }, "q", awesome.quit),
    awful.key({ modkey, "Control" }, "s",     function () os.execute("systemctl suspend") end),
+   awful.key({ modkey, "Control" }, "l",     function () os.execute("light-locker-command -l") end),
 
    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
@@ -441,9 +442,9 @@ end)
 
 --client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 --client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
--- }}}
 
 awful.util.spawn_with_shell("xfsettingsd")
 awful.util.spawn_with_shell("synapse --startup")
 awful.util.spawn_with_shell("pulseaudio --start")
 awful.util.spawn_with_shell("xfce4-power-manager")
+awful.util.spawn_with_shell("light-locker --lock-on-suspend --no-late-locking")
