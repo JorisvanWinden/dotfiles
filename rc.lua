@@ -106,7 +106,7 @@ myseperator = wibox.widget.textbox()
 
 myseperator:set_text("  ")
 
-vicious.register(mystatbox, vicious.widgets.mem, "CPU: $1% RAM: ($2MB/$3MB)", 15)
+vicious.register(mystatbox, vicious.widgets.mem, "CPU: $1% RAM: ($2MB/$3MB)", 5)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -444,7 +444,7 @@ end)
 --client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 awful.util.spawn_with_shell("xfsettingsd")
-awful.util.spawn_with_shell("synapse --startup")
+awful.util.spawn_with_shell("[ -z $(pgrep synapse) ] && synapse -s")
 awful.util.spawn_with_shell("pulseaudio --start")
 awful.util.spawn_with_shell("xfce4-power-manager")
-awful.util.spawn_with_shell("light-locker --lock-on-suspend --no-late-locking")
+awful.util.spawn_with_shell("[ -z $(pgrep light-locker) ] && light-locker --lock-on-suspend")
