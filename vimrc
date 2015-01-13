@@ -8,9 +8,9 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle'
 
-Plugin 'raymond-w-ko/vim-lua-indent'
-
 Plugin 'scrooloose/nerdtree'
+
+Plugin 'altercation/vim-colors-solarized'
 
 " Brief help
 " :PluginList          - list configured plugins
@@ -26,14 +26,8 @@ call vundle#end()
 " enable syntax highlighting
 syntax on
 
-" use incremental search
-set incsearch
-
 " enable hidden buffers
 set hidden
-
-" use visual bell instead of audio
-set visualbell
 
 " intead of failed ask for confirmation
 set confirm
@@ -66,5 +60,30 @@ set smartindent
 " map jj to esc
 inoremap jj <Esc>
 
+" I hate line wrapping
+nnoremap j gj
+nnoremap k gk
+xnoremap j gj
+xnoremap k gk
+
+" Faster up/down navigation
+nmap J 5j
+nmap K 5k
+xmap J 5j
+xmap K 5k
+
 " map Y to yank to end of line
 noremap Y y$
+
+" Faster split navigation
+nmap gh <C-w>h
+nmap gj <C-w>j
+nmap gk <C-w>k
+nmap gl <C-w>l
+
+" Faster resize
+nmap gL <C-w>+
+nmap gH <C-w>-
+
+" Color scheme
+colorscheme darkblue
