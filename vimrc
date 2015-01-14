@@ -67,23 +67,38 @@ xnoremap j gj
 xnoremap k gk
 
 " Faster up/down navigation
-nmap J 5j
-nmap K 5k
-xmap J 5j
-xmap K 5k
+nnoremap J 5j
+nnoremap K 5k
+xnoremap J 5j
+xnoremap K 5k
 
 " map Y to yank to end of line
-noremap Y y$
+nnoremap Y y$
 
 " Faster split navigation
-nmap gh <C-w>h
-nmap gj <C-w>j
-nmap gk <C-w>k
-nmap gl <C-w>l
+nnoremap gh <C-w>h
+nnoremap gj <C-w>j
+nnoremap gk <C-w>k
+nnoremap gl <C-w>l
 
 " Faster resize
-nmap gL <C-w>+
-nmap gH <C-w>-
+nnoremap gL 4<C-w>+
+nnoremap gH 4<C-w>-
 
 " Color scheme
-colorscheme darkblue
+colorscheme slate
+
+" NERDTree shortcut
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+" Save as root
+let s:save_as_root=0
+command WW
+   \ let s:save_as_root=1 |
+   \ w !sudo tee %
+
+autocmd! FileChangedShell * 
+   \ if s:save_as_root == 1 |
+   \    let v:fcs_choice="reload" |
+   \    let s:save_as_root=0 |
+   \ endif
