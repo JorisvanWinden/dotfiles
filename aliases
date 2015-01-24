@@ -12,6 +12,9 @@ alias la='ls -lA'
 # common lisp alias
 alias cl=clisp
 
+# esed to sed -r, like egrep
+alias esed='sed -r'
+
 # set output sink while playback is happening
 function output() {
 	echo "Setting $1 as default sink"
