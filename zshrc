@@ -1,26 +1,18 @@
 # Created by newuser for 5.0.7
 
-# load completion and prompts
-autoload -U compinit
-autoload -U promptinit
-
-# init completion and prompts
-compinit
-promptinit
-
-# use walters prompt, its awesome
-prompt walters
-
-# ignore duplicate history lines
-setopt HIST_IGNORE_DUPS
-
 # set editor and add bin to path
+
+plugins=(colorize)
+
+ZSH=~/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+export PROMPT="%B%F{red}%(?..[%?] )%f%b%F{yellow}λ%f %F{green}%c%f %F{yellow}::%f "
 export EDITOR=vim
-export PATH=$PATH:~/bin
 
 # source bash aliases
 if [ -f ~/.aliases ]; then
-	. ~/.aliases
+	source ~/.aliases
 fi
 
 # set umask
