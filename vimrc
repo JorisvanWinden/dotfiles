@@ -10,36 +10,38 @@ Plugin 'gmarik/Vundle'
 
 Plugin 'scrooloose/nerdtree'
 
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/syntastic'
 
-" Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+Plugin 'epeli/slimux'
+
+" PluginList: list configured plugins
+" PluginInstall: Installs and updates plugins
+" PluginSearch: searches for plugin
+" PluginClean: remove plugins
+" PluginUpdate: updates plugins
 
 call vundle#end()
 
 " enable syntax highlighting
-syntax on
-
-" enable hidden buffers
-set hidden
+syntax enable
 
 " intead of failed ask for confirmation
 set confirm
 
+" disable .viminfo file
+set viminfo="NONE"
+
 " enable line number
 set number
 
-" not really sure what this does
+" show extra info on commands
 set showcmd
 
 " better cmd completion
 set wildmenu
+
+" enable hidden buffers
+set hidden
 
 " prevent many 'press <Enter> to continue'
 set cmdheight=2
@@ -49,16 +51,25 @@ set cmdheight=2
 " tab character is displayed as 3 spaces
 set tabstop=3
 set shiftwidth=3
+" Softtabstop: make x spaces feel like tabs
+" If you use it, set it equal to tabstop and shiftwidth
 
 " don't expand tabs into spaces
 set expandtab
+
+" auto indentation
 set autoindent
 set smartindent
 
+" Syntastic settings
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_always_populate_loc_list = 1
 
 " Key remappings
 " map jj to esc
-inoremap jj <Esc>
+" inoremap jj <Esc>
+" Remove this, since Caps is the new Esc
 
 " I hate line wrapping
 nnoremap j gj
@@ -91,14 +102,69 @@ colorscheme slate
 " NERDTree shortcut
 nnoremap <C-n> :NERDTreeToggle<CR>
 
+" REPL shortcut
+nnoremap <C-c><C-c> :SlimuxREPLSendBuffer<CR>
+
+" REPL configure shortcut
+nnoremap <C-c><C-v> :SlimuxREPLConfigure<CR>
+
+" ToggleHex command
+nnoremap <C-h> :Hexmode<CR>
+
+" Map Q to q
+command! Q q
+
+" Command :Hexmode to :call ToggleHex()
+command! Hexmode call ToggleHex()
+
 " Save as root
 let s:save_as_root=0
-command WW
+command! W
    \ let s:save_as_root=1 |
    \ w !sudo tee %
 
-autocmd! FileChangedShell * 
+autocmd! FileChangedShell *
    \ if s:save_as_root == 1 |
    \    let v:fcs_choice="reload" |
-   \    let s:save_as_root=0 |
    \ endif
+
+autocmd! FileChangedShellPost *
+   \ if s:save_as_root == 1 |
+   \   let v:fcs_choice="ask" |
+   \   let s:save_as_root=0 |
+   \ endif
+
+" NEVER use undo after toggling hexmode. The old settings will not be restored!
+function ToggleHex()
+   " Save these flags, since we restore them after the conversion
+   let l:modified=&mod
+   let l:oldreadonly=&readonly
+   let l:oldmodifiable=&modifiable
+   let &readonly=0
+   let &modifiable=1
+   if !exists("b:editHex") || !b:editHex
+      let b:editHex=1
+      let b:oldft=&ft
+      let b:oldbin=&bin
+
+      setlocal binary
+
+      let &ft="xxd"
+
+      %!xxd
+   else
+      let b:editHex=0
+      let &ft=b:oldft
+
+      if !b:oldbin
+         setlocal nobinary
+      endif
+
+      %!xxd -r
+   endif
+
+   " restore the flags
+   let &mod=l:modified
+   let &readonly=l:oldreadonly
+   let &modifiable=l:oldmodifiable
+endfunction
