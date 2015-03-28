@@ -15,56 +15,21 @@ alias cl=clisp
 # esed to sed -r, like egrep
 alias esed='sed -r'
 
-# set output sink while playback is happening
-function output() {
-	echo "Setting $1 as default sink"
-	pactl set-default-sink $1
-	pacmd list-sink-inputs | grep index | grep -o "[0-9]\+" | while 
-read -r index ; do
-		echo "Moving sink input $index to sink $1"
-		pactl move-sink-input $index $1
-	done
-}
-
-# set volume to 100%
-function vol-max() {
-	vol 100%
+function open() {
+   (xdg-open $1 &>/dev/null &)
 }
 
 # set volume to anything
 function vol() {
-	pactl set-sink-volume @DEFAULT_SINK@ $1
-}
-
-# list pulse sink-inputs
-function list-inputs() {
-	pacmd list-sink-inputs | grep -e index: -e driver: -e sink:
-}
-
-# list pulse source-outputs
-function list-outputs() {
-	pacmd list-source-outputs | grep -e index: -e driver: -e source:
-}
-
-# turn on rtp broadcasting
-function rtp-on() {
-	echo "Loading rtp module"
-	pactl load-module module-rtp-send source=rtp.monitor port=47002 > /dev/null
-}
-
-# turn off rtp broadcasting
-function rtp-off() {
-	echo "Unloading rtp module"
-	pactl unload-module module-rtp-send
-}
-
-# restart pulse
-function pa-restart() {
-	pulseaudio --kill
-	pulseaudio --start
+   amixer sset Master 100%
+   amixer sset Capture 20%
 }
 
 # add a key from ~/.ssh
 function add-key() {
    ssh-add ~/.ssh/$1
+}
+
+function dual-monitor() {
+   xrandr --output VGA1 --auto --output HDMI1 --auto --left-of VGA1
 }

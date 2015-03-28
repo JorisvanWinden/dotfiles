@@ -227,13 +227,16 @@ globalkeys = awful.util.table.join(
       end),
 
    -- Layout manipulation
+   awful.key({ modkey, "Shift"   }, "h", function () awful.client.swap.bydirection('left')   end),
    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.bydirection('down')   end),
    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.bydirection('up')     end),
    awful.key({ modkey, "Shift"   }, "l", function () awful.client.swap.bydirection('right')  end),
-   awful.key({ modkey, "Shift"   }, "h", function () awful.client.swap.bydirection('left')   end),
 
-   awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-   awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+   awful.key({ modkey, "Control" }, "h", function () awful.screen.focus_bydirection('left') end),
+   awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_bydirection('down') end),
+   awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_bydirection('up') end),
+   awful.key({ modkey, "Control" }, "l", function () awful.screen.focus_bydirection('right') end),
+
    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
    awful.key({ modkey,           }, "Tab",
          function ()
@@ -248,7 +251,6 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Control" }, "r", awesome.restart),
    awful.key({ modkey, "Control" }, "q", awesome.quit),
    awful.key({ modkey, "Control" }, "s",     function () os.execute("systemctl suspend") end),
-   awful.key({ modkey, "Control" }, "l",     function () os.execute("light-locker-command -l") end),
 
    awful.key({ modkey,           }, "]",     function () awful.tag.incmwfact( 0.05)    end),
    awful.key({ modkey,           }, "[",     function () awful.tag.incmwfact(-0.05)    end),
@@ -410,7 +412,7 @@ end)
 --client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 --client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
-awful.util.spawn_with_shell("xfsettingsd")
+awful.util.spawn_with_shell("xfsettingsd --sync")
 awful.util.spawn_with_shell("[ -z $(pgrep synapse) ] && synapse -s")
 awful.util.spawn_with_shell("pulseaudio --start")
 awful.util.spawn_with_shell("xfce4-power-manager")

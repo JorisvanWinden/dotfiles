@@ -61,6 +61,8 @@ set expandtab
 set autoindent
 set smartindent
 
+filetype plugin indent on
+
 " Syntastic settings
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
@@ -151,7 +153,7 @@ function ToggleHex()
 
       let &ft="xxd"
 
-      %!xxd
+      %!xxd -ps | sed 's/\(....\)/\1 /g'
    else
       let b:editHex=0
       let &ft=b:oldft
@@ -160,7 +162,7 @@ function ToggleHex()
          setlocal nobinary
       endif
 
-      %!xxd -r
+      %!xxd -r -ps
    endif
 
    " restore the flags
