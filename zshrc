@@ -1,5 +1,3 @@
-# Created by newuser for 5.0.7
-
 # set editor and add bin to path
 
 plugins=(colorize)
@@ -14,6 +12,8 @@ export EDITOR=vim
 if [ -f ~/.aliases ]; then
 	source ~/.aliases
 fi
+
+eval $(keychain --eval --agents ssh -Q --quiet id_rsa)
 
 # set umask
 umask 022
