@@ -269,7 +269,8 @@ globalkeys = awful.util.table.join(
             awful.util.eval, nil,
             awful.util.getdir("cache") .. "/history_eval")
          end),
-   awful.key({ modkey }, "w", function() awful.util.spawn("google-chrome-stable") end)
+   awful.key({ modkey }, "w", function() awful.util.spawn("google-chrome-stable") end),
+   awful.key({ modkey }, "e", function() awful.util.spawn("thunderbird") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -412,5 +413,4 @@ end)
 --client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 --client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
-awful.util.spawn_with_shell("[ -z $(pgrep synapse) ] && synapse -s")
-awful.util.spawn_with_shell("xfce4-power-manager")
+awful.util.spawn_with_shell("synapse -s")
