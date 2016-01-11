@@ -24,12 +24,3 @@ function vol() {
    amixer sset Master 100%
    amixer sset Capture 20%
 }
-
-# add a key from ~/.ssh
-function add-key() {
-   ssh-add ~/.ssh/$1
-}
-
-function dual-monitor() {
-   xrandr --output VGA1 --auto --output HDMI1 --auto --left-of VGA1
-}
