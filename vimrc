@@ -25,7 +25,7 @@ call vundle#end()
 " enable syntax highlighting
 syntax enable
 
-" intead of failed ask for confirmation
+" instead of failed ask for confirmation
 set confirm
 
 " disable .viminfo file
@@ -48,13 +48,13 @@ set cmdheight=2
 
 
 " Indentation setting
-" tab character is displayed as 3 spaces
-set tabstop=3
-set shiftwidth=3
+" tab character is displayed as 2 spaces
+set tabstop=2
+set shiftwidth=2
 " Softtabstop: make x spaces feel like tabs
 " If you use it, set it equal to tabstop and shiftwidth
 
-" don't expand tabs into spaces
+" do expand tabs into spaces
 set expandtab
 
 " auto indentation
@@ -80,12 +80,12 @@ xnoremap j gj
 xnoremap k gk
 
 " Faster up/down navigation
-nnoremap J 5j
-nnoremap K 5k
-xnoremap J 5j
-xnoremap K 5k
+nnoremap J 5gj
+nnoremap K 5gk
+xnoremap J 5gj
+xnoremap K 5gk
 
-" map Y to yank to end of line
+" map Y to yank to end of line, which is logical
 nnoremap Y y$
 
 " Faster split navigation
