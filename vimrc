@@ -99,7 +99,7 @@ nnoremap gL 4<C-w>+
 nnoremap gH 4<C-w>-
 
 " Color scheme
-colorscheme slate
+colorscheme default
 
 " NERDTree shortcut
 nnoremap <C-n> :NERDTreeToggle<CR>
