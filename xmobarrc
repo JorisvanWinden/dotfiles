@@ -1,10 +1,12 @@
 Config {
    font = "xft:Monospace:size=11"
    , alignSep = "{}"
-   , template = "%StdinReader% {} <fc=#00FF00>%dynnetwork%</fc> %memory% <fc=#FF0000>%theDate%</fc>"
+   , template = "%StdinReader% {} <fc=#00FF00>%dynnetwork%</fc> <fc=#3FCCFF>%battery%</fc> %memory%, %cpu% <fc=#FF0000>%theDate%</fc>"
    , commands = 
       [ Run Date "%a %b %_d %Y * %H:%M:%S" "theDate" 10
       , Run StdinReader
+      , Run Cpu [] 10
       , Run DynNetwork [] 3
-      , Run Memory [] 10]
+      , Run Memory [] 10
+      , Run Battery ["-t", "(<left>%), <acstatus>"] 10]
 }
