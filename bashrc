@@ -36,7 +36,7 @@ shopt -s checkwinsize
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.aliases ]; then
-    . ~/.aliases
+#   . ~/.aliases
 fi
 
 export EDITOR=vim

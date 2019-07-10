@@ -5,12 +5,13 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias less='less -R'
 
+alias wake='wol -i 192.168.1.37 00:23:8b:e1:2c:49'
+
 # some more ls aliases
 alias ll='ls -l'
-alias la='ls -lA'
+alias la='ls -lAh'
 
-# common lisp alias
-alias cl=clisp
+alias findip='curl ipinfo.io/ip'
 
 # esed to sed -r, like egrep
 alias esed='sed -r'
@@ -24,3 +25,4 @@ function vol() {
    amixer sset Master 100%
    amixer sset Capture 20%
 }
+
