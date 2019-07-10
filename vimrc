@@ -1,5 +1,9 @@
 set nocompatible               " be iMproved
 
+scriptencoding utf-8
+set encoding=utf-8
+set fileencoding=utf-8
+
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/Vundle
@@ -11,8 +15,6 @@ Plugin 'gmarik/Vundle'
 Plugin 'scrooloose/nerdtree'
 
 Plugin 'scrooloose/syntastic'
-
-Plugin 'epeli/slimux'
 
 " PluginList: list configured plugins
 " PluginInstall: Installs and updates plugins
@@ -46,7 +48,6 @@ set hidden
 " prevent many 'press <Enter> to continue'
 set cmdheight=2
 
-
 " Indentation setting
 " tab character is displayed as 2 spaces
 set tabstop=2
@@ -67,6 +68,7 @@ filetype plugin indent on
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_always_populate_loc_list = 1
+
 
 " Key remappings
 " map jj to esc
